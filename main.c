@@ -22,9 +22,41 @@ typedef struct
   int payment;
   int messageCount;
   int lastDisplayed;
-  bool (*checkCondition)();
 } Client ;
 
+
+Client clients[] = {
+	{
+		{"Kop bil hos Harry", "En god bilaffar (for Harry!)", "Hederlige Harrys Bilar"},
+		5000,
+		3,
+		-1
+	},
+	{
+		{"Mysterier? Ring Långben", "Långben fixar biffen"},
+		4000,
+		2,
+		-1
+	},
+	{
+		{"Köp paj hos Farmor Anka", "Skynda innan Mårten ätit alla pajer"},
+		3000,
+		2,
+		-1
+	},
+	{
+		{"Låt Petter bygga åt dig", "Bygga svart? Ring Petter"},
+		1500,
+		2,
+		-1
+	},
+	{
+		{"Synas här? IOT:s Reklambyrå"},
+		1000,
+		1,
+		-1
+	}
+};
 
 int main(void)
 {
