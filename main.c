@@ -34,25 +34,25 @@ Client clients[] = {
 		-1
 	},
 	{
-		{"Mysterier? Ring Långben", "Långben fixar biffen"},
+		{"Mysterier? Ring Langben", "Langben fixar biffen"},
 		4000,
 		2,
 		-1
 	},
 	{
-		{"Köp paj hos Farmor Anka", "Skynda innan Mårten ätit alla pajer"},
+		{"Kop paj hos Farmor Anka", "Skynda innan Marten atit alla pajer"},
 		3000,
 		2,
 		-1
 	},
 	{
-		{"Låt Petter bygga åt dig", "Bygga svart? Ring Petter"},
+		{"Lat Petter bygga at dig", "Bygga svart? Ring Petter"},
 		1500,
 		2,
 		-1
 	},
 	{
-		{"Synas här? IOT:s Reklambyrå"},
+		{"Synas har? IOT:s Reklambyra"},
 		1000,
 		1,
 		-1
@@ -62,9 +62,9 @@ Client clients[] = {
 int main(void)
 {
 	lcd_init();
-	lcd_enable_blinking();
-	lcd_enable_cursor();
-	lcd_puts("Skriv in koden:");
+	//lcd_enable_blinking();
+	//lcd_enable_cursor();
+	//lcd_puts("Skriv in koden:");
 
 	int total_payment = 0;
 	for (int i = 0; i < sizeof(clients) / sizeof(Client); i++) {
@@ -93,11 +93,11 @@ int main(void)
 		client.lastDisplayed = message_index;
 
 		// Display the message.
-		lcd_set_cursor(0,1);
+		lcd_set_cursor(0,0);
 		lcd_puts(client.messages[message_index]);
 
 		// Wait for 20 seconds before displaying the next ad.
-		_delay_ms(20000);
+		_delay_ms(5000);
 	}
 
 	return 0;
