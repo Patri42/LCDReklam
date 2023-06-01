@@ -1,7 +1,8 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <stdio.h>
-#include <stdbool.h>
+#include <stdlib.h>
+
 #include "lcd.h"
 
 #define BIT_SET(a, b) ((a) |= (1ULL << (b)))
@@ -60,22 +61,44 @@ Client clients[] = {
 
 int main(void)
 {
-  lcd_init();
+	lcd_init();
+	lcd_enable_blinking();
+	lcd_enable_cursor();
+	lcd_puts("Skriv in koden:");
 
-  // start loop with commercial 
+	int total_payment = 0;
+	for (int i = 0; i < sizeof(clients) / sizeof(Client); i++) {
+		total_payment += clients[i].payment;
+	}
 
+	while(1) {
+		// Choose a client based on the weighted random selection.
+		int payment_sum = 0;
+		int random_payment = rand() % total_payment;
+		int client_index = -1;
+		for (int i = 0; i < sizeof(clients) / sizeof(Client); i++) {
+			payment_sum += clients[i].payment;
+		if (payment_sum > random_payment) {
+			client_index = i;
+			break;
+		}
+		}
 
+		// Choose a message from the client.
+		Client client = clients[client_index];
+		int message_index = rand() % client.messageCount;
+		if (message_index == client.lastDisplayed) {
+			message_index = (message_index + 1) % client.messageCount;
+		}
+		client.lastDisplayed = message_index;
 
-  lcd_enable_blinking();
-  lcd_enable_cursor();
-  lcd_puts("Skriv in koden:");
+		// Display the message.
+		lcd_set_cursor(0,1);
+		lcd_puts(client.messages[message_index]);
 
-    int num = 0;
-   while(1) {
-        _delay_ms(3000);
-        num++;
-        lcd_set_cursor(0,1);
-        lcd_printf("Waiting: %d", num);
-   }
+		// Wait for 20 seconds before displaying the next ad.
+		_delay_ms(20000);
+	}
+
 	return 0;
 }
