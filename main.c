@@ -2,13 +2,14 @@
 #include <util/delay.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "lcd.h"
 
-#define BIT_SET(a, b) ((a) |= (1ULL << (b)))
-#define BIT_CLEAR(a,b) ((a) &= ~(1ULL<<(b)))
-#define BIT_FLIP(a,b) ((a) ^= (1ULL<<(b)))
-#define BIT_CHECK(a,b) (!!((a) & (1ULL<<(b)))) 
+// #define BIT_SET(a, b) ((a) |= (1ULL << (b)))
+// #define BIT_CLEAR(a,b) ((a) &= ~(1ULL<<(b)))
+// #define BIT_FLIP(a,b) ((a) ^= (1ULL<<(b)))
+// #define BIT_CHECK(a,b) (!!((a) & (1ULL<<(b)))) 
 
 // B (digital pin 8 to 13)
 // C (analog input pins)
@@ -59,6 +60,28 @@ Client clients[] = {
 	}
 };
 
+void lcd_scroll_text(char* message, int delay_time) {
+    int length = strlen(message);
+  
+    if(length <= 16) {
+        lcd_set_cursor(0, 0);
+        lcd_puts(message);
+        for(int i = 0; i < delay_time; i++)
+            _delay_ms(1);
+        return;
+    }
+  
+    for(int i = 0; i < length - 15; i++) {
+        char buffer[17];
+        memcpy(buffer, &message[i], 16);
+        buffer[16] = '\0';
+        lcd_set_cursor(0, 0);
+        lcd_puts(buffer);
+        for(int j = 0; j < delay_time; j++)
+            _delay_ms(1);
+    }
+}
+
 int main(void)
 {
 	lcd_init();
@@ -94,10 +117,10 @@ int main(void)
 
 		// Display the message.
 		lcd_set_cursor(0,0);
-		lcd_puts(client.messages[message_index]);
+		lcd_scroll_text(clients[client_index].messages[message_index], 300);
 
-		// Wait for 20 seconds before displaying the next ad.
-		_delay_ms(5000);
+		// Wait for 1 second before displaying the next ad.
+		_delay_ms(1000);
 	}
 
 	return 0;
