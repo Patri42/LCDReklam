@@ -8,7 +8,7 @@ MCU=atmega328p
 CFLAGS=-Wall -Wextra  -Wundef -pedantic \
 		-Os -std=gnu99 -DF_CPU=16000000UL -mmcu=${MCU} -DBAUD=19200
 LDFLAGS=-mmcu=$(MCU)
-PORT=\\\\.\\COM3
+PORT=\\\\.\\COM5
 BIN=LCDReklam
 OUT=${BIN}.hex
 SOURCES = main.c lcd.c
