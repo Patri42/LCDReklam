@@ -17,7 +17,6 @@
 // https://wokwi.com/projects/363784064760337409
 
 
-
 typedef struct 
 {
   char *messages[3];
