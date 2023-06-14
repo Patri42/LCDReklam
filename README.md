@@ -19,3 +19,6 @@ Key points of the code:
 
 This code is designed for AVR microcontrollers and requires a connected 16x2 LCD for proper operation.
 
+
+![1686765651560](https://github.com/Patri42/LCDReklam/assets/123195888/623be260-280c-4d30-9830-444ba234729e)
+
