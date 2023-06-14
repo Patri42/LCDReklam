@@ -3,6 +3,9 @@
 
 This is an AVR microcontroller-based code written in C to display advertisements on a 16x2 LCD display. This code takes a set of clients with their messages and displays them on the LCD. The display of messages is managed in a pseudo-random manner based on a weighted system where clients with higher payments have a greater chance of their ads being displayed.
 
+![AVRLCD](https://github.com/Patri42/LCDReklam/assets/123195888/d47488a8-79c7-413c-9d4d-0d6a5874967e)
+
+
 Key points of the code:
 
 **Library Inclusions:** AVR I/O, utility for delay, standard I/O, standard library, and string handling libraries are included. Additionally, a header file for LCD control functions, lcd.h, is included.
@@ -18,7 +21,6 @@ Key points of the code:
 **Message Selection:** From the selected client, a random message is chosen for display. The code ensures that the same message is not displayed twice consecutively by comparing the new randomly selected message with the previously displayed one.
 
 This code is designed for AVR microcontrollers and requires a connected 16x2 LCD for proper operation.
+![AVRLCD](https://github.com/Patri42/LCDReklam/assets/123195888/9fb85375-18e0-436d-8de7-a9e5ee190019)
 
-
-![1686765651560](https://github.com/Patri42/LCDReklam/assets/123195888/623be260-280c-4d30-9830-444ba234729e)
 
