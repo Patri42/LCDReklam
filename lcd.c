@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <util/delay.h> 
 
-void lcd_send(uint8_t value, uint8_t mode);
+void lcd_send(uint8_t value, uint8_t mode); 
 void lcd_write_nibble(uint8_t nibble);
 
 static uint8_t lcd_displayparams;
@@ -25,7 +25,7 @@ void lcd_send(uint8_t value, uint8_t mode) {
     LCD_PORT = LCD_PORT & ~(1 << LCD_RS);
   }
 
-  //LCD_PORT = LCD_PORT & ~(1 << LCD_RW);
+  //LCD_PORT = LCD_PORT & ~(1 << LCD_RW);****
 
   lcd_write_nibble(value >> 4);
   lcd_write_nibble(value);
